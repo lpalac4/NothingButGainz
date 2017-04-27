@@ -6,4 +6,5 @@ package com.morasoftware.nothingbutgainz.exercisediary;
 
 public class ExerciseDiaryActivity
 {
+
 }

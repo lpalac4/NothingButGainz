@@ -1,20 +1,23 @@
 package com.morasoftware.domain.interactor;
 
+import com.morasoftware.domain.ExerciseDiaryEntry;
 import com.morasoftware.domain.User;
 import com.morasoftware.domain.executor.PostExecutionThread;
 import com.morasoftware.domain.executor.ThreadExecutor;
 import com.morasoftware.domain.repository.UserRepository;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import javax.inject.Inject;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
  * retrieving data related to an specific {@link User}.
  */
-public class GetUserExerciseDiary extends UseCase<User, GetUserExerciseDiary.Params> {
+public class GetUserExerciseDiary extends UseCase<List<ExerciseDiaryEntry>, GetUserExerciseDiary.Params> {
 
   private final UserRepository userRepository;
 
@@ -25,9 +28,9 @@ public class GetUserExerciseDiary extends UseCase<User, GetUserExerciseDiary.Par
     this.userRepository = userRepository;
   }
 
-  @Override Observable<User> buildUseCaseObservable(Params params) {
+  @Override Observable<List<ExerciseDiaryEntry>> buildUseCaseObservable(Params params) {
 //    Preconditions.checkNotNull(params);
-    return this.userRepository.user(params.mUserId);
+    return this.userRepository.exerciseDiaries();
   }
 
     public static final class Params
@@ -41,8 +44,12 @@ public class GetUserExerciseDiary extends UseCase<User, GetUserExerciseDiary.Par
             this.mDate = date;
         }
 
-        public static Params forUser(int userId, Date date)
+        public static Params forUser(int userId)
         {
+            return new Params(userId, null);
+        }
+
+        public static Params forUserAndDates(int userId, Date date) {
             return new Params(userId, date);
         }
     }
