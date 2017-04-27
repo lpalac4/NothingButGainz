@@ -15,7 +15,7 @@ import io.reactivex.Observable;
  * Created by chocollo on 4/24/17.
  */
 
-public class GetUserCase extends UseCase<List<User>,Void> {
+public class GetUserCase extends UseCase<List<User>, Void> {
 
     private final UserRepository userRepository;
 

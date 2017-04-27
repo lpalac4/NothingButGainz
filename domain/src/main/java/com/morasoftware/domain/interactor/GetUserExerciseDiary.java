@@ -5,6 +5,8 @@ import com.morasoftware.domain.executor.PostExecutionThread;
 import com.morasoftware.domain.executor.ThreadExecutor;
 import com.morasoftware.domain.repository.UserRepository;
 
+import java.util.Date;
+
 import io.reactivex.Observable;
 import javax.inject.Inject;
 
@@ -25,19 +27,23 @@ public class GetUserExerciseDiary extends UseCase<User, GetUserExerciseDiary.Par
 
   @Override Observable<User> buildUseCaseObservable(Params params) {
 //    Preconditions.checkNotNull(params);
-    return this.userRepository.user(params.userId);
+    return this.userRepository.user(params.mUserId);
   }
 
-  public static final class Params {
+    public static final class Params
+    {
+        private final int mUserId;
+        private final Date mDate;
 
-    private final int userId;
+        private Params(int userId, Date date)
+        {
+            this.mUserId = userId;
+            this.mDate = date;
+        }
 
-    private Params(int userId) {
-      this.userId = userId;
+        public static Params forUser(int userId, Date date)
+        {
+            return new Params(userId, date);
+        }
     }
-
-    public static Params forUser(int userId) {
-      return new Params(userId);
-    }
-  }
 }
