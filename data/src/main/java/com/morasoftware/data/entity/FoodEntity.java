@@ -28,4 +28,8 @@ class FoodEntity {
 
     @SerializedName("unhealthyFatGrams")
     private float unhealthyFatGrams;
+
+    public FoodEntity() {
+
+    }
 }

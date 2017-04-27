@@ -23,4 +23,8 @@ public class ExerciseDiaryEntryEntity extends DiaryEntryEntity {
     public String getExerciseName() {
         return exerciseName;
     }
+
+    public ExerciseDiaryEntryEntity() {
+
+    }
 }

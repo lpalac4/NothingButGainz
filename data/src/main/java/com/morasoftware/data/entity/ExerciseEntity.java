@@ -13,4 +13,8 @@ public class ExerciseEntity {
 
     @SerializedName("weight")
     private float weight;
+
+    public ExerciseEntity() {
+
+    }
 }

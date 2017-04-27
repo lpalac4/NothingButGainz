@@ -23,4 +23,8 @@ public class CalorieDiaryEntryEntity extends DiaryEntryEntity {
     public List<FoodEntity> getFoodEntityList() {
         return foodEntityList;
     }
+
+    public CalorieDiaryEntryEntity() {
+
+    }
 }
